@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/fragments:: page_head('Tạo mới tài khoản', 'none')">
+</head>
+<body>
+<nav th:replace="/common/fragments:: menu_header"></nav>
+
+<div class="container">
+    <h1>Cập nhật tài khoản</h1>
+    <br>
+    <form th:action="@{'/user/update/' + ${userDto.id}}" th:object="${userDto}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label  class="form-label">Email</label>
+            <input readonly th:field="*{email}" type="text" class="form-control"  placeholder="Email">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="1" class="form-label">Địa chỉ</label>
+            <input th:field="*{address}" class="form-control" id="1" rows="3"></input>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" th:field="*{role}" aria-label="Role">
+                <option value="ADMIN">Admin</option>
+                <option value="USER">USER</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <div class="row">
+                <div class="col">
+                    <input type="file" th:field="*{fileAvatar}"  accept="image/png, image/jpeg" />
+                    <input type="text" th:field="*{avatar}"  hidden />
+                </div>
+                <div class="col">
+                    <img th:src="@{'/product-images/' + ${userDto.avatar}}" height="100px">
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" >Cập nhật</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>

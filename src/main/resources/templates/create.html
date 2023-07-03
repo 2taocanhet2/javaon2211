@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/fragments:: page_head('Tạo mới tài khoản', 'none')">
+</head>
+<body>
+<nav th:replace="/common/fragments:: menu_header"></nav>
+
+<div class="container">
+    <h1>Tạo mới tài khoản</h1>
+    <br>
+
+
+
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <form th:action="@{/backend/user/save}" th:object="${userDto}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="0" class="form-label">Email</label>
+            <input th:field="*{email}" type="text" class="form-control" id="0" placeholder="Email">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="1" class="form-label">Địa chỉ</label>
+            <input th:field="*{address}" class="form-control" id="1" rows="3"></input>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="2" class="form-label">Mật khẩu</label>
+            <input th:field="*{password}" class="form-control" id="2" ></input>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="3" class="form-label">Nhập lại mật khẩu</label>
+            <input th:field="*{repassword}" class="form-control" id="3" ></input>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('repassword')}" th:errors="*{repassword}"></div>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" th:field="*{role}" aria-label="Role">
+                <option value="ADMIN">Admin</option>
+                <option value="USER">USER</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="file" th:field="*{fileAvatar}"  accept="image/png, image/jpeg" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" >Tạo mới</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>
