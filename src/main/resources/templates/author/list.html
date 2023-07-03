@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Danh sách tác giả</title>
+        <style>
+            td {
+                border: solid;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="color: green">Danh sách tác giả</h1>
+        <h2 style="color: red" th:text="${#message}"></h2>
+        <br>
+        <table >
+            <thead>
+                <td style="width: 50px">ID</td>
+                <td style="width: 200px">Tên</td>
+                <td style="width: 300px">Địa chỉ</td>
+                <td style="width: 100px">Giới tính</td>
+            </thead>
+            <tbody>
+                <th:block th:each="author : ${l}">
+                    <tr>
+                        <td th:text="${author.id}"></td>
+                        <td th:text="${author.name}"></td>
+                        <td th:text="${author.address}"></td>
+                        <td th:if="${author.gender == 1}">Nam</td>
+                        <td th:if="${author.gender == 0}">Nư</td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </body>
+</html>

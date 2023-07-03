@@ -23,20 +23,6 @@ import java.awt.*;
 public class AccountController {
     @Autowired
     UserService userService;
-//     1:tạo bảng USER(ID, EMAIL,AVATAR(tên file ảnh upload), PASSWORD, ADDRESS, STATUS(1: kích hoạt,0: tạm dừng) ))
-//     2:Tạo giao diện để lấy danh sách, chi tiết, tạo mới, cập nhật và delete
-//     Màn hình danh sách -> click vào Id -> chuyển sang màn chi tiết
-//     Màn hình danh sách -> click vào nut cập nhật -> chuyển sang màn cập nhật
-//     Màn hình danh sách -> click vào delete -> delete và return kết quả
-
-
-//     Bài tập
-//    1: Chuyển lưu file media từ foder trên local server sang sử dụng storage theo guide
-//    https://gist.github.com/m-cakir/05470e679b73e2036254cef949432fcc
-//     2: Viết fragments khi upload file ảnh se hiển thị ảnh preview áp dụng cho 2 trang tạo mới và cập nhật tai khoản
-//     3: Viết api delete tài khoản, và 1 fragment khi click vào link delete ở trang danh sách hiển thị popup confirm
-//     sử dụng (modal boostrap, https://bootstrap-confirmation.js.org/)
-
 
     @GetMapping("list")
     public String list(Model model) {

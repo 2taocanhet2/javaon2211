@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/fragments:: page_head('Danh sách tài khoản', 'none')">
+</head>
+<body>
+<nav th:replace="/common/fragments:: menu_header"></nav>
+
+<div class="container">
+    <h1>Danh sách tài khoản</h1>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Email</th>
+            <th scope="col">Quyền</th>
+            <th scope="col">Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s, iStat : ${list}">
+            <th scope="row" th:text="${iStat.index + 1}"></th>
+            <td th:text="${s.email}"></td>
+            <td th:text="${s.role}"></td>
+            <td><a th:href="@{'/user/edit/' + ${s.id}}" >Cập nhật</a>
+                <a th:href="@{'/user/delete/' + ${s.id}}" >Delete</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+</body>
+</html>

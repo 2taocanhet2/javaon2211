@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<head th:replace="/common/fragments:: page_head('Tạo mới sản phẩm', 'none')">
+	</head>
+	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
+	<script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+</head>
+<body>
+	<nav th:replace="/common/fragments:: menu_header"></nav>
+
+
+
+<div class="container">
+	<div>
+		<h2>Tạo mới sản phẩm</h2>
+	</div>
+
+	<form th:action="@{/backend/products/save}" method="post" onsubmit="return checkUnique(this)"
+		enctype="multipart/form-data"
+		th:object="${product}">
+		<input type="hidden" th:field="*{id}" />
+		<input th:if="${product.category != null}" type="hidden"
+			id="categoryId" th:value="${product.category.id}" />
+
+
+		<div id="exTab1" class="container">
+			<ul class="nav nav-tabs " id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link " data-toggle="tab" href="#overview" role="tab">Tổng quan</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#description" role="tab">Mô tả</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#images" role="tab">Ảnh</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#shipping" role="tab">Shipping</a>
+				</li>
+			</ul>
+
+			<div class="tab-content clearfix">
+				<div class="tab-pane active p-3" id="overview" role="tabpanel">
+					<div th:replace="products/product_overview :: content"></div>
+				</div>
+				<div class="tab-pane" id="description" role="tabpanel">
+					<div th:replace="products/product_description :: content"></div>
+				</div>
+				<div class="tab-pane" id="images" role="tabpanel">
+					<div th:replace="products/product_images :: content"></div>
+				</div>
+				<div class="tab-pane p-3" id="shipping" role="tabpanel">
+					<div th:replace="products/product_shipping :: content"></div>
+				</div>
+			</div>
+		</div>
+
+	<div class="text-center">
+		<input type="submit" value="Save" class="btn btn-primary m-3" />
+		<input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel" />
+	</div>
+	</form>
+</div>
+<script type="text/javascript">
+	MAX_FILE_SIZE = 502400; // 500KB
+
+	moduleURL = "[[@{/backend/products}]]";
+	brandModuleURL = "[[@{/backend/brands}]]";
+	defaultImageThumbnailSrc = "[[@{/image/image-thumbnail.png}]]";
+	checkUniqueUrl = "[[@{/backend/products/check_unique}]]";
+
+</script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script th:src="@{/js/common_form.js}"></script>
+<script th:src="@{/js/product_form_overview.js}"></script>
+<script th:src="@{/js/product_form_images.js}"></script>
+<script th:src="@{/js/product_form_details.js}"></script>
+</body>
+</html>

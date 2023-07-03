@@ -1,4 +1,4 @@
-package com.example.javaonline.service.user;//package t3h.vn.java2211on.service.user;
+//package t3h.vn.java2211on.service.user;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
